@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Ticket booking</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row m-5">
+            <h1>bus-ticket-booking</h1>
+            <h2>A bus ticket booking api server build on express.js with MongoDB as the backend.</h2>
+            <h1>API docs</h1><br>
+            <h3>This is HTML conversion of a markdown, please visit <a href="https://github.com/sonutiwari/bus_ticket_booking">github</a> page to see the markdown itself.</h3>
+            <h2>
+                <a href="https://sonu-bus-ticket-booking.herokuapp.com/">
+                    The API is live at Heroku
+                </a>
+            </h2>
+            <p><strong>POST &#39;/api/ticket&#39;</strong></p>
+            <ul>
+            <li>Create a ticket in tickets collection and corresponding user in user collection with seat<em>number</em></li>
+            <li>All of the attributes are required_</li>
+            <li>data:</li>
+            <li><pre>{
+            "seat_number": 1, -> possible values 1 to 40
+            "passenger": { -> passenger details
+                "name": "Sonu Tiwari",
+                "sex": "M",
+                "age": 23,
+                "phone": "1234567890", -> has to be unique in the whole user collection, hence, primary key for users
+                "email": "abc@gmail.com"
+            }
+            } </pre></li>
+            <li>returns:
+            200: if success, returns object that was saved
+            404: if fails returns error in this format {message:&quot;error in string&quot;}</li>
+            </ul>
+            <p><strong>PUT &#39;/api/ticket/:ticket_id&#39;</strong></p>
+            <ul>
+            <li><em>Edit the ticket details and/or the passenger details</em></li>
+            <li><em>All the attributes are optional</em></li>
+            <li>Data:</li>
+            <li><pre>{<pre><code><span class="hljs-string">"seat_number"</span>: <span class="hljs-number">1</span>,<span class="hljs-function"> -&gt;</span> possible values <span class="hljs-number">1</span> <span class="hljs-keyword">to</span> <span class="hljs-number">40</span>
+            <span class="hljs-string">"passenger"</span>: {<span class="hljs-function"> -&gt;</span> passenger details
+            <span class="hljs-string">"name"</span>: <span class="hljs-string">"Sonu Tiwari"</span>,
+            <span class="hljs-string">"sex"</span>: <span class="hljs-string">"M"</span>,
+            <span class="hljs-string">"age"</span>: <span class="hljs-number">23</span>,
+            <span class="hljs-string">"phone"</span>: <span class="hljs-string">"1234567890"</span>,
+            <span class="hljs-string">"email"</span>: <span class="hljs-string">"abc@gmail.com"</span>
+            }
+            </code></pre>  } </pre>
+            <pre> returns:
+            200: if success, returns object that was saved
+            404: if fails returns error in this format {message:&quot;error in string&quot;}<pre></li>
+            </ul>
+            <p><strong>GET /api/ticket/:ticket_id</strong></p>
+            <pre>
+            - Get the status of the ticket based on the ticket_id passed in URL_
+            - returns:
+            200: if success, returns object that was saved
+            404: if fails returns error in this format {message:"error in string"}
+            </pre>
+
+            <p><strong>GET /api/tickets/open</strong></p>
+            <pre>
+            - _Get a list of tickets which have is_booked: false, that is, are open_
+            - returns:
+            200: if success, returns object that was saved
+            404: if fails returns error in this format {message:"error in string"}
+            </pre>
+
+            <p><strong>GET /api/tickets/closed</strong></p>
+            <pre>
+            - Get a list of tickets which have is_booked: true, that is, are closed_
+            - returns:
+            200: if success, returns object that was saved
+            404: if fails returns error in this format {message:"error in string"}
+            </pre>
+
+            <p><strong>GET /api/ticket/details/:ticket_id</strong></p>
+            <pre>
+            - Get the user details of the ticket based on the ticket_id passed_
+            - returns:
+            200: if success, returns object that was saved
+            404: if fails returns error in this format {message:"error in string"}
+            </pre>
+
+            <p><strong>POST /api/tickets/reset</strong></p>
+            <pre>
+            - Open all the tickets that are in the DB_
+            - sets is_booked:false in all documents in tickets collection
+            </pre>
+            <pre>
+            - data:
+            - {
+            "username": "admin",
+            "password": "adminpassword"
+            }
+            </pre>
+            <pre>
+            - returns:
+            200: if success, returns object that was saved
+            404: if fails returns error in this format {message:"error in string"}
+            </pre>
+
+            <p><strong>Packages used</strong>:</p>
+            <pre>
+            - "bcrypt": used for hashing and storing comparing passwords
+            - "dotenv": to set process environment variables
+            - "express": for API building blocks
+            - "joi": Input validation middleware
+            - "mongoose": MongoDB ORM
+            - "mongoose-unique-validator":
+            - "mocha": testing library
+            - "chai": testing library
+            - "chai-http": testing http requests
+            </pre>
+        </div>
+    </div>
+</body>
+</html>
